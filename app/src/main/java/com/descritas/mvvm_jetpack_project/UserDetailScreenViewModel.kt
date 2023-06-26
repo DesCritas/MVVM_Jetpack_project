@@ -16,10 +16,12 @@ import androidx.lifecycle.ViewModel
 import androidx.navigation.NavController
 import com.descritas.data.User
 import com.descritas.data.UserRepository
+import dagger.hilt.android.AndroidEntryPoint
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import javax.inject.Inject
+
 
 @OptIn(ExperimentalMaterial3Api::class)
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
@@ -48,6 +50,7 @@ fun UserDetailScreen(navController: NavController, vm: UserDetailScreenViewModel
 }
 
 @HiltViewModel
+
 class UserDetailScreenViewModel @Inject constructor(val userRepository: UserRepository) :
     ViewModel() {
     private val _user = MutableStateFlow<User?>(null)

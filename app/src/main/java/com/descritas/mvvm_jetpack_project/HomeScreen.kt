@@ -18,10 +18,12 @@ import androidx.lifecycle.ViewModel
 import androidx.navigation.NavController
 import com.descritas.data.User
 import com.descritas.data.UserRepository
+import dagger.hilt.android.AndroidEntryPoint
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import javax.inject.Inject
+
 
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @OptIn(ExperimentalMaterial3Api::class)
@@ -36,7 +38,7 @@ fun HomeScreen(navController: NavController, vm: HomeScreenViewModel) {
             Column {
                 val users by vm.users.collectAsState()
                 users.forEach { user ->
-                    ClickableText(text = AnnotatedString(user.name), Modifier.padding(all = 16.dp),
+                    ClickableText(text = AnnotatedString(user.name), Modifier.padding(all = 8.dp),
                         onClick = {
                             navController.navigate("users/${user.id}")
                         })
@@ -47,6 +49,7 @@ fun HomeScreen(navController: NavController, vm: HomeScreenViewModel) {
 }
 
 @HiltViewModel
+
 class HomeScreenViewModel @Inject constructor(val userRepository: UserRepository) : ViewModel() {
     private val _users = MutableStateFlow(userRepository.getUsers())
     val users: StateFlow<List<User>> = _users
