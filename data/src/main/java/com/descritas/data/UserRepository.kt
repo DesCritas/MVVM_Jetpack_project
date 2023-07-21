@@ -1,9 +1,10 @@
 package com.descritas.data
 
 
-import dagger.hilt.android.AndroidEntryPoint
+
 import javax.inject.Inject
 import javax.inject.Singleton
+
 
 @Singleton
 
@@ -30,4 +31,4 @@ data class User(
     val id: Long,
     val name: String,
     val email: String
-)
+    )

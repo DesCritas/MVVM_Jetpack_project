@@ -2,6 +2,7 @@ package com.descritas.mvvm_jetpack_project
 
 import android.annotation.SuppressLint
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Scaffold
@@ -16,7 +17,6 @@ import androidx.lifecycle.ViewModel
 import androidx.navigation.NavController
 import com.descritas.data.User
 import com.descritas.data.UserRepository
-import dagger.hilt.android.AndroidEntryPoint
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -35,8 +35,10 @@ fun UserDetailScreen(navController: NavController, vm: UserDetailScreenViewModel
                 }
             )
         },
-        content = {
-            Column {
+        content = { paddingValues: PaddingValues ->
+            Column (
+                modifier = Modifier.padding(paddingValues)
+                    ) {
                 vm.load(userId = userId)
                 val user by vm.user.collectAsState()
                 Column(Modifier.padding(all = 16.dp)) {
